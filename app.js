@@ -12,5 +12,8 @@ mongoose.connect('mongodb://localhost:27017/Student_Mangment_DB');
 
 app.use("/",router)
 
-app.listen(3000, console.log("your server is running on localhost:3000"))
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
