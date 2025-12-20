@@ -8,7 +8,11 @@ app.use(methodOverride("_method" , {methods:["POST" , "GET"]} ))
 app.use(express.urlencoded({extended:true}))
 app.set("view engine" , "ejs")
 app.use(express.static("views"))
-mongoose.connect('mongodb://localhost:27017/Student_Mangment_DB');
+const dbUrl = process.env.MONGO_URI || "mongodb://localhost:27017/Student_Management_System";
+
+mongoose.connect(dbUrl)
+  .then(() => console.log("Connected to Database"))
+  .catch((err) => console.log(err));
 
 app.use("/",router)
 
